@@ -1,0 +1,11 @@
+routes:
+    home: 'Default:home'
+    about: 'Default:about'
+
+defaut_route: 'home'
+
+db_config:
+    name: 'mvc'
+    host: 'localhost'
+    user: 'root'
+    pass: ''
