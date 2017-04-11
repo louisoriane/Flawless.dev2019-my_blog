@@ -2,6 +2,9 @@
 
 namespace Model;
 
+use PDO;
+use PDOException;
+
 class DBManager
 {
     private $dbh;
@@ -46,7 +49,7 @@ class DBManager
     public function insert($table, $data = [])
     {
         $dbh = $this->getDbh();
-        $query = 'INSERT INTO `' . $table . '` VALUES ("",';
+        $query = 'INSERT INTO `' . $table . '` VALUES (null,';
         $first = true;
         foreach ($data AS $k => $value)
         {

@@ -6,7 +6,15 @@ class UserManager
 {
     private $DBManager;
     
-    public function __construct()
+    private static $instance = null;
+    public static function getInstance()
+    {
+        if (self::$instance === null)
+            self::$instance = new UserManager();
+        return self::$instance;
+    }
+    
+    private function __construct()
     {
         $this->DBManager = DBManager::getInstance();
     }
@@ -29,7 +37,7 @@ class UserManager
     {
         if (empty($data['username']) OR empty($data['email']) OR empty($data['password']))
             return false;
-        $data = $this->DBManager->getUserByUsername($data['username']);
+        $data = $this->getUserByUsername($data['username']);
         if ($data !== false)
             return false;
         // TODO : Check valid email

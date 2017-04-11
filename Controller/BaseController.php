@@ -15,4 +15,16 @@ class BaseController
     {
         return $this->twig;
     }
+    
+    protected function renderView($view, $data = [])
+    {
+        $template = $this->getTwig()->load($view);
+        return $template->render($data);
+    }
+    
+    protected function redirect($route)
+    {
+        header('Location: ?action='.$route);
+        exit(0);
+    }
 }
