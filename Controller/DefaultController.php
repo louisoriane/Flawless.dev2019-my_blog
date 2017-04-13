@@ -17,7 +17,7 @@ class DefaultController extends BaseController
                                    ['name' => $user['username']]);
         }
         else
-            $this->redirect('login');
+            echo $this->renderView('login.html.twig');
     }
 
     public function aboutAction()

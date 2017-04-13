@@ -6,4 +6,17 @@
     Password : <input type="password" name="password"><br>
     <input type="submit">
 </form>
+<form action="?action=register" id="register">
+	<input type="submit" value="inscrire" id="ok">
+</form>
+<script>
+	$(function() {
+		$('#register').submit(function(e) {
+			e.preventDefault();
+			$('body').load('?action=register');
+	    });
+	});
+</script>
 {% endblock %}
+
+
