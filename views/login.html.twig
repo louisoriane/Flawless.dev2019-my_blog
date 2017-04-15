@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<form action="?action=login" method="POST">
-    Login : <input type="text" name="username"><br>
-    Password : <input type="password" name="password"><br>
+<form action="?action=login" method="POST" id="login">
+    Login : <input type="text" id="username"><br>
+    Password : <input type="password" id="password"><br>
     <input type="submit">
 </form>
 <form action="?action=register" id="register">
@@ -15,6 +15,30 @@
 			e.preventDefault();
 			$('body').load('?action=register');
 	    });
+
+	    $('#login').submit(function(e) {
+		e.preventDefault();
+		var $this = $(this);
+
+		var username = $('#username').val();
+        var password = $('#password').val();
+
+        if(username === '' || password === '') {
+            $('.good').html('Les champs doivent êtres remplis');
+        } else {
+        	$.ajax({
+                url: '?action=login',
+                type: 'post',
+                data: {
+                    username: username,
+                    password: password,
+                },
+                success: function(response) {
+                    $("body").load('?action=home');
+                }
+            });
+        }
+	});
 	});
 </script>
 {% endblock %}
