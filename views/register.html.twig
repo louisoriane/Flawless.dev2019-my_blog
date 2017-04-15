@@ -6,10 +6,17 @@
 		Password : <input type="password" id="password"><br>
 		<input type="submit">
 	</form>
+	<form id="test" action="?action=login" method="POST">
+		<input type="submit" value="se connecter">
+	</form>
 	<div class="good"></div>
 	
 
 	<script>
+		$('#test').submit(function(e) {
+			e.preventDefault();
+			$('body').load('?action=login');
+	    });
 		var url = "web/index.js";
         $.getScript(url);
 	</script>

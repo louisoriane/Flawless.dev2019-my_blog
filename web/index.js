@@ -24,4 +24,15 @@ $(function() {
             });
         }
 	});
+
+    $('#logout').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+                url: '?action=logout',
+                type: 'post',
+                success: function(response) {
+                    $("body").load('?action=login');
+                }
+            });
+    });
 });
