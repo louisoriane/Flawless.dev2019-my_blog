@@ -1,9 +1,11 @@
 routes:
     home: 'Default:home'
-    about: 'Default:about'
+    article: 'Default:article'
+    add: 'Security:add'
     login: 'Security:login'
     logout: 'Security:logout'
     register: 'Security:register'
+    comment: 'Security:comment'
 
 defaut_route: 'home'
 

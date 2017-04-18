@@ -57,6 +57,18 @@ class UserManager
         $user['email'] = $data['email'];
         $this->DBManager->insert('users', $user);
     }
+
+    public function userArticle($data)
+    {
+        $user = $this->getUserById($_SESSION['user_id']);
+        
+        $article['username'] = $user['username'];
+        $article['title'] = $data['title'];
+        $article['description'] = $data['description'];
+        $article['date'] = date('m/d/Y à h:i:s a', time());
+        var_dump($article);
+        $this->DBManager->insert('article', $article);
+    }
     
     public function userCheckLogin($data)
     {
@@ -81,4 +93,17 @@ class UserManager
         $_SESSION['user_id'] = $data['id'];
         return true;
     }
+
+    public function userComment($data)
+    {
+        return true;
+    }
+
+    public function getArticle($username) {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM article WHERE username = :username", 
+                                ['username' => $username]);
+        return $data;
+    }
 }
+
+

@@ -1,0 +1,20 @@
+<article>
+	<h3>{{ title }}</h3>
+	<h6>Posté par {{username}} le {{date}}</h6>
+	<p>
+		{{ description}}<br>
+		<button class="btn-comment">commentaires</button>
+		<form class="commentaire" action="?action=comment" method="post">
+			<textarea name="comment" id="comment" cols="20" rows="5"></textarea><br>
+			<input type="submit" value="poster">
+		</form>
+	</p>
+</article>
+
+<script>
+	$(function() {
+		$('.btn-comment').click(function() {
+			$(".commentaire").css('display', 'block');
+		});
+	});
+</script>

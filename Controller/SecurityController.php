@@ -47,4 +47,26 @@ class SecurityController extends BaseController
         }
         echo $this->renderView('register.html.twig', ['error' => $error]);
     }
+
+    public function addAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            $manager->userArticle($_POST);
+        }
+        echo $this->renderView('login.html.twig', ['error' => $error]);
+    }
+
+    public function commentAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            $manager->userComment($_POST);
+        }
+        echo $this->renderView('login.html.twig', ['error' => $error]);
+    }
 }

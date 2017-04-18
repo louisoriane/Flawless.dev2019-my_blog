@@ -1,0 +1,46 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+	<form action="?action=home" method="POST">
+		<input type="submit" value="Home">
+	</form>
+
+	<h1>Article</h1>
+	<form action="?action=add" method="post" id="article">
+		Titre de l'article<br>
+		<input type="text" id="title" name="title" placeholder="titre"><br>
+		Description<br>
+		<textarea name="description" id="description" cols="30" rows="10"></textarea>
+		<br>
+		<input type="submit" value="poster">
+	</form>
+
+	<div class="good"></div>
+
+	 <script>
+		$(function() {
+			$('#article').submit(function(e) {
+				e.preventDefault();
+
+				var title = $('#title').val();
+				var description = $('#description').val();
+
+				if(title === '' || description === '') {
+		            $('.good').html('Les champs doivent êtres remplis');
+		        } else {
+		        	$.ajax({
+		                url: '?action=add',
+		                type: 'post',
+		                data: {
+		                    title: title,
+		                    description: description
+		                },
+		                success: function(response) {
+		                	$('#title').html('');
+		                	$('.good').html('Votre article a été posté.');
+		                }
+		            });
+		        }
+			});
+		});
+	</script>
+{% endblock %}
