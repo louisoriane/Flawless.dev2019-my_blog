@@ -25,7 +25,15 @@ class DefaultController extends BaseController
                                    'date' => $value['date'],
                                    ]
                                    );
-                // echo $this->renderView('commentaire.html.twig');
+                $list = $manager->getAllComment($value['title']);
+                foreach ($list as $comment) {
+                  echo $this->renderView('commentaire.html.twig',
+                    [
+                    'comment' => $comment['comment'],
+                    'username' => $comment['username'],
+                    'date' => $comment['date']
+                    ]);
+                }
             }
 
         }

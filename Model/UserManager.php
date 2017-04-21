@@ -96,12 +96,27 @@ class UserManager
 
     public function userComment($data)
     {
-        return true;
+        $comment['article_name'] = $data['article_name'];
+        $comment['username'] = $data['username'];
+        $comment['comment'] = $data['comment'];
+        $comment['date'] = date('m/d/Y à h:i:s a', time());
+        $this->DBManager->insert('comment', $comment);
     }
 
     public function getArticle($username) {
         $data = $this->DBManager->findAllSecure("SELECT * FROM article WHERE username = :username", 
                                 ['username' => $username]);
+        return $data;
+    }
+
+    public function getComment($article_name) {
+        $data= $this->DBManager->findOne("SELECT * FROM comment ORDER BY id DESC LIMIT 1");
+        return $data;
+    }
+
+    public function getAllComment($article_name) {
+        $data= $this->DBManager->findAllSecure("SELECT * FROM comment WHERE article_name = :article_name", 
+                                ['article_name' => $article_name]);
         return $data;
     }
 }

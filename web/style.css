@@ -17,3 +17,24 @@ article {
 .commentaire {
 	display: none;
 }
+
+.comments{
+/*	background: red;*/
+	display: none;
+	border: 3px solid black;
+	margin-bottom: 10px;
+	background: #D6EAF8;
+	width: 300px;
+}
+
+.coms {
+	border: 3px solid black;
+	margin-bottom: 10px;
+	background: #D6EAF8;
+	width: 300px;
+}
+
+#bloc-comment {
+	background: white;
+	width: 300px;
+}

@@ -64,9 +64,12 @@ class SecurityController extends BaseController
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
+
             $manager = UserManager::getInstance();
-            $manager->userComment($_POST);
+            $comment = $manager->userComment($_POST);
+
+            $comment = $manager->getComment($_POST['article_name']);
+            echo json_encode(['username' => $comment]);
         }
-        echo $this->renderView('login.html.twig', ['error' => $error]);
     }
 }
