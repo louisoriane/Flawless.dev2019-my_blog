@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2017 at 01:58 PM
+-- Generation Time: Apr 28, 2017 at 03:33 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `article` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `userid` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `date` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
@@ -38,10 +38,29 @@ CREATE TABLE `article` (
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`id`, `username`, `title`, `description`, `date`) VALUES
-(13, 'ella', 'jennifer', 'hihi jsais pas quoi dire', '04/18/2017 Ã  12:06:51 pm'),
-(12, 'ella', 'SUPINTERNET', 'ecole de fouuuuuu sa mere', '04/18/2017 11:56:13 am'),
-(11, 'ella', 'beyoncÃ©', 'la plus belle', '04/18/2017 10:47:06 am');
+INSERT INTO `article` (`id`, `userid`, `title`, `description`, `date`) VALUES
+(37, 106, 'Projet Blog', 'Le but de ce projet est de rÃ©aliser toutes les fonctionnalitÃ©s d\'un blog.\n\nNous avons 1 mois pour le faire en binÃ´me.\n\nIl est fait en MVC objet, javascript (jquery) et CSS. Le tout responsive.', '04/28/2017 Ã  03:32:25 pm');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `article_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `userid` int(11) NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
+  `date` varchar(255) CHARACTER SET utf8 NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `article_name`, `userid`, `comment`, `date`) VALUES
+(338, 'Projet Blog', 106, 'trop relou comme projet flemme -_-', '04/28/2017 Ã  03:33:14 pm');
 
 -- --------------------------------------------------------
 
@@ -61,9 +80,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
-(85, 'ella', '$2y$10$c2FsdHlzYWx0eXNhbHR5cuXcawG96r4XZeQ91b1XSIOSoHcHqpHb.', 'ella@hotmail.fr'),
-(84, 'lucas', '$2y$10$c2FsdHlzYWx0eXNhbHR5cuXcawG96r4XZeQ91b1XSIOSoHcHqpHb.', 'lucas@hotmail.fr'),
-(83, 'oriane', '$2y$10$c2FsdHlzYWx0eXNhbHR5cuXcawG96r4XZeQ91b1XSIOSoHcHqpHb.', 'oriane@oriane.fr');
+(106, 'Oriane', '$2y$10$c2FsdHlzYWx0eXNhbHR5cuXcawG96r4XZeQ91b1XSIOSoHcHqpHb.', 'oriane@hotmail.fr');
 
 --
 -- Indexes for dumped tables
@@ -73,6 +90,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
 -- Indexes for table `article`
 --
 ALTER TABLE `article`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -89,12 +112,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=339;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
