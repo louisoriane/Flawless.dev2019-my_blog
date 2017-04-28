@@ -1,23 +1,15 @@
-{% extends 'layout.html.twig' %}
-{% block content %}
-	<form id="register" action="?action=register" method="POST">
-		Login : <input type="text" id="username"><br>
-		Email : <input type="text" id="email"><br>
-		Password : <input type="password" id="password"><br>
-		<input type="submit">
-	</form>
-	<form id="test" action="?action=login" method="POST">
-		<input type="submit" value="se connecter">
-	</form>
-	<div class="good"></div>
-	
+{% extends 'public-home.html.twig' %}
 
-	<script>
-		$('#test').submit(function(e) {
-			e.preventDefault();
-			$('body').load('?action=login');
-	    });
-		var url = "web/index.js";
-        $.getScript(url);
-	</script>
+{% block content %}
+<div id="block-login">
+<h4>Inscription</h4>
+<hr>
+<form id="register" action="?action=register" method="POST">
+		<input type="text" id="username" placeholder="Pseudo" class="log-input"><br>
+		<input type="text" id="email" placeholder="Email" class="log-input"><br>
+		<input type="password" id="password" placeholder="Mot de passe" class="log-input"><br>
+		<input type="submit" value="Inscription">
+</form>
+<div class="good"></div>
+</div>
 {% endblock %}

@@ -1,11 +1,18 @@
 routes:
     home: 'Default:home'
     article: 'Default:article'
-    add: 'Security:add'
+    profil: 'Default:profil'
     login: 'Security:login'
     logout: 'Security:logout'
     register: 'Security:register'
-    comment: 'Security:comment'
+    addArticle: 'Security:addArticle'
+    displayArticle: 'Default:displayArticle'
+    comments: 'Security:comments'
+    delComment: 'Security:delComment'
+    changeMdp: 'Security:changeMdp'
+    changeUsername: 'Security:changeUsername'
+    editArticle: 'Default:editArticle'
+    editIt: 'Security:editIt'
 
 defaut_route: 'home'
 

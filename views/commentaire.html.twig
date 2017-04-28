@@ -1,8 +1,14 @@
-<div class="comments">
-	{{ date }}<br>
-	{{ username }}<br>
-	{{ comment }}
-	<form id="delcomment" action="?action=deleteComment" method="POST">
-		<input type="submit" value="Supprimer commentaire">
+{% block content %}
+
+	<div class="coms private">
+	<h6>Posté par {{ username }} le {{ date }}</h6>
+	<p>
+		{{ comment }}<br>
+	</p>
+	<form action="?action=delComment" method="POST" class="del-comment">
+		<input type="hidden" value="{{ comment }}" name="comment" class="comment">
+		<input type="submit" value="Supprimer" id="del-btn">
 	</form>
-</div>
+	</div>
+
+{% endblock %}

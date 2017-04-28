@@ -1,46 +1,14 @@
-{% extends 'layout.html.twig' %}
+{% extends 'public-home.html.twig' %}
 
 {% block content %}
+<div id="block-login">
+<h4>Connexion</h4>
+<hr>
 <form action="?action=login" method="POST" id="login">
-    Login : <input type="text" id="username"><br>
-    Password : <input type="password" id="password"><br>
-    <input type="submit">
+    <input type="text" id="username" placeholder="Pseudo" class="log-input"><br>
+    <input type="password" id="password" placeholder="Mot de passe" class="log-input"><br>
+    <input type="submit" value="Connexion">
 </form>
-<form action="?action=register" id="register">
-	<input type="submit" value="inscrire" id="ok">
-</form>
-<script>
-	$(function() {
-		$('#register').submit(function(e) {
-			e.preventDefault();
-			$('body').load('?action=register');
-	    });
-
-	    $('#login').submit(function(e) {
-		e.preventDefault();
-		var $this = $(this);
-
-		var username = $('#username').val();
-        var password = $('#password').val();
-
-        if(username === '' || password === '') {
-            $('.good').html('Les champs doivent êtres remplis');
-        } else {
-        	$.ajax({
-                url: '?action=login',
-                type: 'post',
-                data: {
-                    username: username,
-                    password: password,
-                },
-                success: function(response) {
-                    $("body").load('?action=home');
-                }
-            });
-        }
-	});
-	});
-</script>
+<div class="good"></div>
+</div>
 {% endblock %}
-
-

@@ -1,0 +1,23 @@
+{% extends 'user-home.html.twig' %}
+{% block content %}
+
+<article class="display-article">
+	<div class="header-article">
+	<h3 >{{ title }}</h3>
+	<h6>Posté par {{ username }} le {{ date }}</h6>
+	</div>
+
+	<div class="info-article">
+		<p>
+		{{ description }}<br>
+		</p>
+		<h4 id="comm">Commentaires</h4>
+		<form action='?action=comments' method="POST" id="comments">
+		<input type="hidden" value="{{ title }}" name="article_name" id="title-article-special">
+		<textarea name="comment" id="comment"></textarea><br>
+		<input type="submit" value="Poster" id="post-comment">
+		</form>
+	</div>
+</article>
+<div class="list"></div>
+{% endblock %}

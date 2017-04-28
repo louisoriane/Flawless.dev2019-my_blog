@@ -1,0 +1,21 @@
+{% extends 'public-home.html.twig' %}
+{% block content %}
+
+<article class="display-article">
+	<div class="header-article">
+	<h3 >{{ title }}</h3>
+	<h6>Posté par {{ username }} le {{ date }}</h6>
+	</div>
+
+	<div class="info-article">
+		<p>
+		{{ description }}<br>
+		</p>
+		<h4 id="comm">Commentaires</h4>
+	</div>
+	
+	
+	
+</article>
+<div class="list"></div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'user-home.html.twig' %}
+{% block content %}
+
+<h1>PROFIL</h1>
+
+<h6>Changer pseudo</h6>
+<form action="?action=changeUsername" method="POST" id="changeUsername">
+	<input type="text" name="username" id="new-username">
+	<input type="submit" value="Changer username">
+</form>
+
+{# <h6>Changer mot de passe</h6>
+<form action="?action=changeMdp" method="POST" id="changeMdp" name="changeMdp">
+	<input type="password" name="new-mdp" id="new-mdp">
+	<input type="submit" value="Changer">
+</form> #}
+
+<div class="good"></div>
+{% endblock %}

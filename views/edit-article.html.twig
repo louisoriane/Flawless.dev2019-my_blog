@@ -1,0 +1,16 @@
+{% extends 'user-home.html.twig' %}
+{% block content %}
+
+<div id='add-article'>
+<h1>EDITEZ VOTRE ARTICLE</h1>
+<form action="?action=editIt" method="post" id="edit-article">
+	<input type="text" id="edit-title" name="title" value="{{ title }}" placeholder="Titre de l'article">	<br>
+	<textarea name="description" id="edit-description" cols="30" rows="10" placeholder="Description">{{ description }}
+	</textarea>
+	<br>
+	<input type="submit" value="Editer" id="post-article">
+</form>
+<div class="good"></div>
+</div>
+
+{% endblock %}

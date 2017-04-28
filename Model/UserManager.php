@@ -57,18 +57,6 @@ class UserManager
         $user['email'] = $data['email'];
         $this->DBManager->insert('users', $user);
     }
-
-    public function userArticle($data)
-    {
-        $user = $this->getUserById($_SESSION['user_id']);
-        
-        $article['username'] = $user['username'];
-        $article['title'] = $data['title'];
-        $article['description'] = $data['description'];
-        $article['date'] = date('m/d/Y à h:i:s a', time());
-        var_dump($article);
-        $this->DBManager->insert('article', $article);
-    }
     
     public function userCheckLogin($data)
     {
@@ -94,31 +82,105 @@ class UserManager
         return true;
     }
 
+    public function userArticle($data)
+    {
+        $user = $this->getUserById($_SESSION['user_id']);
+        
+        $article['userid'] = $user['id'];
+        $article['title'] = $data['title'];
+        $article['description'] = $data['description'];
+        $article['date'] = date('m/d/Y à h:i:s a', time());
+        $this->DBManager->insert('article', $article);
+    }
+
+    public function getArticle($userid) {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM article WHERE userid = :userid",['userid' => $userid]);
+        return $data;
+    }
+
+    public function getUsername($id) {
+        $data = $this->DBManager->findOneSecure("SELECT username FROM users WHERE id = :id",['id' => $id]);
+        return $data;
+    }
+
+    public function getAllArticle() {
+        $data = $this->DBManager->findAll("SELECT * FROM article");
+        return $data;
+    }
+
+    public function getIdArticle($title) {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM article WHERE title = :title",['title' => $title]);
+        return $data;
+    }
+
+    public function getAllComment($title) {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM comment WHERE article_name =:article_name",['article_name' => $title]);
+        return $data;
+    }
+
+    public function getItArticle($title) {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM article WHERE title = :title",['title' => $title]);
+        return $data;
+    }
+
     public function userComment($data)
     {
+        $user = $this->getUserById($_SESSION['user_id']);
+
         $comment['article_name'] = $data['article_name'];
-        $comment['username'] = $data['username'];
+        $comment['userid'] = $user['id'];
         $comment['comment'] = $data['comment'];
         $comment['date'] = date('m/d/Y à h:i:s a', time());
         $this->DBManager->insert('comment', $comment);
     }
 
-    public function getArticle($username) {
-        $data = $this->DBManager->findAllSecure("SELECT * FROM article WHERE username = :username", 
-                                ['username' => $username]);
-        return $data;
-    }
-
     public function getComment($article_name) {
-        $data= $this->DBManager->findOne("SELECT * FROM comment ORDER BY id DESC LIMIT 1");
+        $data= $this->DBManager->findAllSecure("SELECT * FROM comment WHERE article_name = :article_name ORDER BY id DESC",['article_name' => $article_name]);
         return $data;
     }
 
-    public function getAllComment($article_name) {
-        $data= $this->DBManager->findAllSecure("SELECT * FROM comment WHERE article_name = :article_name", 
-                                ['article_name' => $article_name]);
+    public function deleteComment($comment) {
+        var_dump($comment);
+        $data= $this->DBManager->findOneSecure("DELETE FROM comment WHERE comment = :comment",['comment' => $comment]);
+        var_dump($data);
+        return $data;
+    }
+
+    public function changePassword($data) {
+        $password = $data['new-mdp'];
+        // $newpassword = $password;
+        $user = $this->getUserById($_SESSION['user_id']); 
+
+        $data= $this->DBManager->findOneSecure("UPDATE users SET password = :password WHERE username = :username", 
+            [
+                'password' => $password,
+                'username' => $user['username']
+            ]);
+        return $data;
+    }
+
+    public function changeUsername($data) 
+    { 
+        // AJOUTER LES AUTRE TABLES
+        $user = $this->getUserById($_SESSION['user_id']);
+
+        $data= $this->DBManager->findAllSecure("UPDATE users SET username = :username WHERE id = :id", 
+            [
+                'username' => $data['username'],
+                'id' => $user['id']
+            ]);
+        return $data;
+    }
+
+    public function changeArticle($data) 
+    { 
+        $user = $this->getUserById($_SESSION['user_id']);
+        $data= $this->DBManager->findOneSecure("UPDATE article SET title = :title, description = :description WHERE userid = :userid", 
+            [
+                'title' => $data['title'],
+                'description' => $data['description'],
+                'userid' => $user['id']
+            ]);
         return $data;
     }
 }
-
-

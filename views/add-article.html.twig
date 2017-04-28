@@ -1,0 +1,15 @@
+{% extends 'user-home.html.twig' %}
+{% block content %}
+
+<div id='add-article'>
+<h1>ECRIRE UN ARTICLE</h1>
+<form action="?action=addArticle" method="post" id="article">
+	<input type="text" id="title" name="title" placeholder="Titre de l'article"><br>
+	<textarea name="description" id="description" cols="30" rows="10" placeholder="Description"></textarea>
+	<br>
+	<input type="submit" value="poster" id="post-article">
+</form>
+<div class="good"></div>
+</div>
+
+{% endblock %}

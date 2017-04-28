@@ -2,19 +2,31 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>OOP MVC</title>
+        <title>Blog</title>
         <link rel="stylesheet" href="web/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src="web/script.js"></script>
+        <script type="text/javascript" src="web/event.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
     </head>
     <body>
         <nav>
-            <div id="profil-img"></div>
+            <a href="?action=home"><img src="web/img/logo.png"></div></a>
             <div id="menu-hamburger">
                 <span class="line-hamburger"></span>
                 <span class="line-hamburger"></span>
                 <span class="line-hamburger"></span>
             </div>
+            
+            
         </nav>
+        <div class="submenu">
+            <ul>
+                <li><a href="?action=login">Connexion</a></li>
+                <li><a href="?action=register">Inscription</a></li>
+            </ul>
+        </div>
 
         <header>
             <div id="bloc-header-title">
@@ -23,12 +35,9 @@
         </header>
 
         {% if error is defined and error is not empty %}
-        <p class="error">Error : {{ error }}</p>
+            <p class="error">Error : {{ error }}</p>
         {% endif %}
-        
-        <div id="content">
+
         {% block content %}{% endblock %}
-        </div>
-        
     </body>
 </html>

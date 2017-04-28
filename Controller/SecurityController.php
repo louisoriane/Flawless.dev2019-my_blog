@@ -15,7 +15,6 @@ class SecurityController extends BaseController
             if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
-                $this->redirect('home');
             }
             else {
                 $error = "Invalid username or password";
@@ -27,7 +26,7 @@ class SecurityController extends BaseController
     public function logoutAction()
     {
         session_destroy();
-        echo $this->redirect('login');
+        echo $this->redirect('home');
     }
 
     public function registerAction()
@@ -39,7 +38,6 @@ class SecurityController extends BaseController
             if ($manager->userCheckRegister($_POST))
             {
                 $manager->userRegister($_POST);
-                $this->redirect('home');
             }
             else {
                 $error = "Invalid data";
@@ -48,7 +46,7 @@ class SecurityController extends BaseController
         echo $this->renderView('register.html.twig', ['error' => $error]);
     }
 
-    public function addAction()
+    public function addArticleAction()
     {
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -56,20 +54,82 @@ class SecurityController extends BaseController
             $manager = UserManager::getInstance();
             $manager->userArticle($_POST);
         }
-        echo $this->renderView('login.html.twig', ['error' => $error]);
+        else {
+            $error = "Invalid data";
+        }
     }
 
-    public function commentAction()
+    public function commentsAction()
     {
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-
             $manager = UserManager::getInstance();
             $comment = $manager->userComment($_POST);
 
-            $comment = $manager->getComment($_POST['article_name']);
-            echo json_encode(['username' => $comment]);
+            $username = $manager->getUserById($_SESSION['user_id']);
+            $data = $manager->getComment($_POST['article_name']);
+            echo json_encode(['data' => $data, 'username' => $username['username']]);
+        }
+        else 
+        {
+            $error = "Invalid data";
+        }
+    }
+
+    public function delCommentAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            $data = $manager->deleteComment($_POST['comment']);
+        }
+        else 
+        {
+            $error = "Invalid data";
+        }
+    }
+
+    public function changeMdpAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            $data = $manager->changePassword($_POST);
+        }
+        else
+        {
+            $error = "Invalid data";
+        }
+    }
+
+    public function changeUsernameAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            $data = $manager->changeUsername($_POST);
+        }
+        else
+        {
+            $error = "Invalid data";
+        }
+    }
+
+    public function editItAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            $data = $manager->changeArticle($_POST);
+        }
+        else
+        {
+            $error = "Invalid data";
         }
     }
 }
