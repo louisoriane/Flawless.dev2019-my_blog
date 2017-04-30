@@ -1,13 +1,12 @@
 {% extends 'user-home.html.twig' %}
 {% block content %}
 
-<h1>PROFIL</h1>
-
-<h6>Changer pseudo</h6>
+<div id="profil-bloc">
 <form action="?action=changeUsername" method="POST" id="changeUsername">
-	<input type="text" name="username" id="new-username">
-	<input type="submit" value="Changer username">
+	<input type="text" name="username" id="new-username" placeholder="Nouveau pseudo">
+	<input type="submit" value="Changer">
 </form>
+</div>
 
 <div class="good"></div>
 {% endblock %}

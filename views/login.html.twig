@@ -7,8 +7,10 @@
 <form action="?action=login" method="POST" id="login">
     <input type="text" id="username" placeholder="Pseudo" class="log-input"><br>
     <input type="password" id="password" placeholder="Mot de passe" class="log-input"><br>
-    <input type="submit" value="Connexion">
+    <input type="submit" value="Connexion" class="log-btn">
 </form>
-<div class="good"></div>
+{% if error is defined and error is not empty %}
+            <div class="good">{{ error }}</div>
+{% endif %}
 </div>
 {% endblock %}

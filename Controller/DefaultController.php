@@ -13,7 +13,7 @@ class DefaultController extends BaseController
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             
-            echo $this->renderView('user-home.html.twig', ['username' => $user['username']]);
+            echo $this->renderView('user-home.html.twig', ['user' => $user['username']]);
             $article = $manager->getAllArticle();
             foreach ($article as $value) {
               $username = $manager->getUsername($value['userid']);
@@ -54,7 +54,7 @@ class DefaultController extends BaseController
         {     
         $manager = UserManager::getInstance();
         $article = $manager->getIdArticle($_POST['title-article']);
-
+        $user = $manager->getUserById($_SESSION['user_id']);
         foreach ($article as $value) {
                 $username = $manager->getUsername($value['userid']);
                 echo $this->renderView('display-article.html.twig',
@@ -62,6 +62,7 @@ class DefaultController extends BaseController
                            'title' => $value['title'], 
                            'description' => $value['description'],
                            'username' => $username['username'],
+                           'user' => $user['username'],
                            'date' => $value['date'],
                        ]);
                 $list = $manager->getComment($value['title']);
@@ -110,9 +111,11 @@ class DefaultController extends BaseController
     {
         $manager = UserManager::getInstance();
         $article = $manager->getItArticle($_POST['title']);
+        $user = $manager->getUserById($_SESSION['user_id']);
         echo $this->renderView('edit-article.html.twig', 
           [
             'title' => $article['title'],
+            'user' => $user['username'],
             'description' => $article['description']
           ]);
     }

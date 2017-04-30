@@ -9,6 +9,7 @@ class SecurityController extends BaseController
     public function loginAction()
     {
         $error = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $manager = UserManager::getInstance();
@@ -17,7 +18,7 @@ class SecurityController extends BaseController
                 $manager->userLogin($_POST['username']);
             }
             else {
-                $error = "Invalid username or password";
+                $error = "Pseudo ou Mot de passe invalide.";
             }
         }
         echo $this->renderView('login.html.twig', ['error' => $error]);

@@ -4,17 +4,16 @@ body, html, h6, p, ul, li, h3, h4 {
 	padding: 0;
 }
 
-body, html {
-	/*height: 100%;*/
-}
-
 body {
-    /*background: rgb(238,238, 238);*/
-    /*background: #e8eaef;*/
     background: white;
     font-family: "verdana";
     display: flex;
     flex-direction: column;
+
+}
+
+input{
+	font-size: 20px;
 }
 
 /* Navigation */
@@ -35,12 +34,18 @@ nav #profil-img {
 	height: 55px;
 }
 
+/* Menu hamburger */
+#menu-hamburger {
+	cursor: pointer;
+}
+
 nav #menu-hamburger .line-hamburger {
 	display: block;
 	background: white;
 	width: 45px;
 	height: 6px;
 	margin-bottom: 10px;
+	
 }
 
 /* Menu who slice */
@@ -58,6 +63,7 @@ nav #menu-hamburger .line-hamburger {
 	right: 0;
 	top: 89px;
 	z-index: 1;
+
 }
 
 .submenu ul, li, a {
@@ -66,13 +72,12 @@ nav #menu-hamburger .line-hamburger {
 }
 
 .submenu ul {
-	/*margin-top: 15px;*/
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	width: 100%;
 	height: 100%;
-	
+
 }
 
 .submenu li {
@@ -94,17 +99,15 @@ nav #menu-hamburger .line-hamburger {
 	color: black;
 }
 
-
+/* Class open to show submenu */
 .open {
 	transform: translateX(0%);
 	--webkit-transform: translateX(0%);
 }
 
-/* Header background */
+/* Header */
 header {
-	background: url('img/header.jpeg') no-repeat;
-	background-position: center;
-	background-size: 800px;
+	background: #F44336;
 	height: 350px;
 	opacity: 0.8;
 	display: flex;
@@ -130,9 +133,9 @@ header #header-title {
 	padding: 0;
 }
 
+/* Article */
 article {
 	background: #F8F9F9;
-	/*background: white;*/
 	margin: 0;
 	padding: 0;
 	margin-bottom: 20px;
@@ -140,27 +143,15 @@ article {
 	align-self: center;
 	width: 700px;
 	height: 400px;
-	font-family: 'Open Sans', sans-serif;
 	display: flex;
-	/*flex-direction: column;*/
 	justify-content: space-between;
-	border-top-left-radius: 13px;
-	border-top-right-radius: 13px;
 	overflow-y: hidden;
 	font-family: 'Merriweather Sans', sans-serif;
 }
 
-article h3 {
-	font-size: 40px;
-	color: black;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	padding-top: 15px;
-}
-
- .contenu {
+.contenu {
  	overflow-y: hidden;
- 	height: auto;
+ 	height: 200px;
  	text-align: justify;
 	font-size: 30px;
 	margin-top: 20px;
@@ -173,11 +164,29 @@ article h6 {
 	color: #626567;
 }
 
+article h3 {
+	font-size: 40px;
+	color: black;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding-top: 15px;
+}
+
 #read-content {
 	border-style: none;
 	background: black;
 	color: white;
 	font-size: 25px;
+	cursor: pointer;
+}
+
+#read-content:hover {
+	background: #F1948A;
+	color: white;
+}
+
+.good {
+	margin-top: 30px;
 }
 
 #article-info {
@@ -187,7 +196,7 @@ article h6 {
 }
 
 .image-article {
-	background: url('https://unsplash.it/600/400/') no-repeat;
+	background: url('img/article.jpg') no-repeat;
 	background-size: 600px 100%;
 	width: 200px;
 }
@@ -214,7 +223,6 @@ article h6 {
 	border-style: none;
 	border: 1px solid #ddd;
 	background: white;
-	/*padding: 10px ;*/
 	padding-left: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -233,14 +241,19 @@ article h6 {
 #block-login input[type=submit] {
 	border-style: none;
 	width: 100%;
-	/*height: 50px;*/
 	background: #CB4335;
 	color: white;
 	font-size: 35px;
 	padding: 10px 10px;
+	cursor: pointer;
+}
+
+#block-login input[type=submit]:hover {
+	background: #DC7633;
 }
 
 /* Display article */
+
 .display-article {
 	display: flex;
 	flex-direction: column;
@@ -256,8 +269,8 @@ article h6 {
 
 .header-article h6   {
 	display: flex;
-	align-items: center;
 	margin-right: 30px;
+	align-items: center;
 }
 
 #comm {
@@ -269,9 +282,7 @@ article h6 {
 .info-article {
 	display: flex;
 	flex-direction: column;
-	/*padding: 20px 20px;*/
 	width: 100%;
-	/*width: 600px;*/
 }
 
 .info-article p {
@@ -286,21 +297,20 @@ article h6 {
 }
 
 .list {
-	background: #DEDEDE;
 	display: none;
+	margin: auto;
 }
 
-.coms {  
-	background: #212121;
+.coms {
+	background: #424242;
 	margin-top: 5px;
-	/*align-self: center;*/
 	width: 86%;
 	margin-left: 45px;
 	margin-right: 10px;
 	height: 80px;
 	padding: 20px 10px;
 	font-size: 30px;
-	border-radius: 10px;
+	border: 1px solid #ddd;
 	color: white;
 }
 
@@ -309,12 +319,10 @@ article h6 {
 }
 
 
-/* PRIVAAAATE   CSSS */
+/* User profil */
 
 #bloc-profil-title {
-	background: url('img/header-profil.jpg') no-repeat;
-	background-position: center;
-	background-size: 800px;
+	background: #FF5722;
 	height: 350px;
 	opacity: 0.8;
 	display: flex;
@@ -378,7 +386,7 @@ article h6 {
 	border-style: none;
 	padding: 8px 20px;
 	font-size: 25px;
-	background: #C0392B;
+	background: #212121;
 	color: white;
 }
 
@@ -425,6 +433,10 @@ article h6 {
 	cursor: pointer;
 }
 
+#post-article:hover {
+	background: #F1948A;
+}
+
 #edit-article-header {
 	display: flex;
 	justify-content: space-between;
@@ -445,4 +457,86 @@ article h6 {
 	color: white;
 	font-family: 'Merriweather Sans', sans-serif;
 	cursor: pointer;
+}
+
+#edit-btn:hover {
+	background: #F1948A;
+}
+
+/* Profil bloc */
+#profil-bloc {
+	align-self: center;
+	margin-top: 100Px;
+}
+
+@media (min-width: 1025px) {
+header, #bloc-profil-title{
+	height: 200px;
+}
+
+.submenu {
+	top: 45px;
+}
+
+nav #menu-hamburger .line-hamburger {
+	display: block;
+	background: white;
+	width: 35px;
+	height: 4px;
+	margin-bottom: 10px;
+}
+
+article {
+	width: 1000px;
+	margin-bottom: 50px;
+}
+
+.contenu {
+	font-size: 20px;
+}
+
+.content-article h3 {
+	font-size: 35px;
+}
+.image-article {
+	background: url('img/article.jpg') no-repeat;
+	background-size: 600px 100%;
+	width: 400px;
+}
+
+.info-article p {
+	font-size: 20px;
+}
+
+.header-article h3 {
+	font-size: 30px;
+	
+}
+
+.coms {
+	margin-bottom: 10px;
+	width: 670px;
+	margin-left: 0;
+	align-self: center;
+	font-size: 20px;
+}
+
+nav img {
+	height: 40px;
+}
+
+body{
+	background-color: white;
+}
+nav{
+	background: black;
+	height: 60px;
+}
+h1{
+	text-align: center;
+}
+
+h6{
+	color: #F4F6F7;
+}
 }

@@ -33,11 +33,8 @@
                 <h2 id="header-title">FLAWLESS</h2>
             </div>
         </header>
-
-        {% if error is defined and error is not empty %}
-            <p class="error">Error : {{ error }}</p>
-        {% endif %}
-
-        {% block content %}{% endblock %}
+    
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

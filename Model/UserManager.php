@@ -37,6 +37,9 @@ class UserManager
     {
         if (empty($data['username']) OR empty($data['email']) OR empty($data['password']))
             return false;
+        if (strlen($data['username']) < 4 OR strlen($data['password']) < 6 OR !filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+          return false;
+        }
         $data = $this->getUserByUsername($data['username']);
         if ($data !== false)
             return false;
